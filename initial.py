@@ -18,7 +18,7 @@ CHUNK_SIZE = int(SAMPLE_RATE * CHUNK_DURATION)
 
 # Load models
 print("Loading models...")
-whisper_model = whisper.load_model("base")  # or "small"
+whisper_model = whisper.load_model("base")  
 sentiment_analyzer = pipeline("sentiment-analysis")
 print("Models loaded.")
 
@@ -55,17 +55,17 @@ def process_audio_chunks():
                     wf.writeframes((current_chunk * 32767).astype(np.int16).tobytes())
 
             # Transcribe
-            print("\n🎧 Transcribing...")
+            print("\n Transcribing...")
             result = whisper_model.transcribe(wavfile)
             text = result['text'].strip()
             os.remove(wavfile)
 
             if text:
-                print(f"📝 Text: {text}")
+                print(f" Text: {text}")
                 sentiment = sentiment_analyzer(text)[0]
                 label = sentiment['label']
                 score = sentiment['score']
-                print(f"💬 Sentiment: {label} ({score:.2f})")
+                print(f" Sentiment: {label} ({score:.2f})")
             else:
                 print("No speech detected.")
 

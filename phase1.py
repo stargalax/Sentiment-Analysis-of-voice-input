@@ -5,9 +5,7 @@ import whisper
 from transformers import pipeline
 from scipy.io.wavfile import write
 
-# -------------------------------
 # Cached models
-# -------------------------------
 @st.cache_resource
 def load_whisper_model():
     return whisper.load_model("base")
@@ -19,10 +17,8 @@ def load_sentiment_model():
 whisper_model = load_whisper_model()
 sentiment_model = load_sentiment_model()
 
-# -------------------------------
-# Streamlit UI
-# -------------------------------
-st.title("🎤 Record Audio & Analyze Sentiment")
+
+st.title(" Record Audio & Analyze Sentiment")
 
 audio = mic_recorder(start_prompt="Start recording", stop_prompt="Stop recording")
 
@@ -39,11 +35,11 @@ if audio:
     # 🔹 Transcribe
     result = whisper_model.transcribe(audio_path)
     text = result["text"].strip()
-    st.subheader("📝 Transcription")
+    st.subheader(" Transcription")
     st.write(text if text else "(No speech detected)")
 
     # 🔹 Sentiment
     if text:
         sentiment = sentiment_model(text)[0]
-        st.subheader("😀 Sentiment Analysis")
+        st.subheader(" Sentiment Analysis")
         st.write(f"**{sentiment['label']}** ({round(sentiment['score'], 2)})")

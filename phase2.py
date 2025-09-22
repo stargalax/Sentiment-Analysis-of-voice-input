@@ -6,11 +6,10 @@ from transformers import pipeline
 from scipy.io.wavfile import write
 import numpy as np
 
-st.title("🎤 Audio Transcription & Emotion Detection")
+st.title("Audio Transcription & Emotion Detection")
 
-# -------------------------------
 # Cached models
-# -------------------------------
+
 @st.cache_resource
 def load_whisper_model():
     return whisper.load_model("base")
@@ -23,9 +22,6 @@ def load_emotion_model():
 whisper_model = load_whisper_model()
 emotion_model = load_emotion_model()
 
-# -------------------------------
-# Record Audio
-# -------------------------------
 audio_bytes = audio_recorder()
 
 if audio_bytes:
@@ -38,21 +34,17 @@ if audio_bytes:
     st.audio(audio_bytes, format="audio/wav")
     st.success("Audio recorded!")
 
-    # -------------------------------
     # Transcribe with Whisper
-    # -------------------------------
     result = whisper_model.transcribe(audio_path)
     text = result["text"].strip()
 
-    st.subheader("📝 Transcription")
+    st.subheader(" Transcription")
     st.write(text if text else "(No speech detected)")
 
-    # -------------------------------
-    # Emotion Detection
-    # -------------------------------
+
     if text:
         emotions = emotion_model(text, top_k=3)  # show top 3 emotions
-        st.subheader("💖 Detected Emotions")
+        st.subheader(" Detected Emotions")
         for emo in emotions:
             label = emo['label']
             score = round(emo['score'], 2)

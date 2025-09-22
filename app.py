@@ -5,12 +5,12 @@ import whisper
 from transformers import pipeline
 import numpy as np
 import soundfile as sf
-
+#
 st.title("🎤 Continuous Audio Transcription & Emotion Detection")
 
-# -------------------------------
+
 # Cached models
-# -------------------------------
+
 @st.cache_resource
 def load_whisper_model():
     return whisper.load_model("base")
@@ -22,9 +22,7 @@ def load_emotion_model():
 whisper_model = load_whisper_model()
 emotion_model = load_emotion_model()
 
-# -------------------------------
-# Record Audio
-# -------------------------------
+
 st.write("Click the button below to record your audio. Record as long as you want.")
 audio_bytes = audio_recorder()
 
@@ -44,10 +42,8 @@ if audio_bytes:
     st.audio(audio_bytes, format="audio/wav")
     st.success("Audio recorded!")
 
-    # -------------------------------
-    # Process in 3-second chunks
-    # -------------------------------
-    CHUNK_SIZE = samplerate * 3  # 3-second chunks
+
+    CHUNK_SIZE = samplerate * 3 
     chunks = [data[i:i + CHUNK_SIZE] for i in range(0, len(data), CHUNK_SIZE)]
 
     final_transcript = ""
