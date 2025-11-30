@@ -1,7 +1,6 @@
-sounddevice
-numpy
-torch
+streamlit
+audio-recorder-streamlit
 openai-whisper
 transformers
-audio-recorder-streamlit
-
+scipy
+numpy
