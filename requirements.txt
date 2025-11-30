@@ -3,3 +3,5 @@ numpy
 torch
 openai-whisper
 transformers
+audio-recorder-streamlit
+
