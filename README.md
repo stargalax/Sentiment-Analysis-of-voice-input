@@ -5,6 +5,8 @@ This project is a progressive build of a **real-time voice-based emotion and sen
 It uses **audio recording**, **speech-to-text**, and **NLP emotion classification** to analyze the emotional tone of spoken input — evolving from a basic CLI prototype to an interactive Streamlit app with near real-time analysis.
 
 ---
+## architecture diagram
+<img width="1077" height="543" alt="image" src="https://github.com/user-attachments/assets/651271bb-1a30-488b-a8a7-097e48d9000d" />
 
 ##  Motivation
 
